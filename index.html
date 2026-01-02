@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pointless to Grow up | Official website</title>
+  <style>
+    .title {
+      display: none;
+    }
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      position: relative;
+      margin: 0 auto;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .container::after {
+      content: "";
+      background-image: url('guy-on-couch.jpg');
+      width: 662px;
+      height: 674px;
+      background-size: 100%;
+      position: absolute;
+      bottom: 0;
+      z-index: -1;
+      right: -30%;
+
+
+    }
+    @media (min-width:768px) {
+      .container::after {
+        right: 0;
+        }
+    }
+    .container.drink::after {
+      background-position-y: -674px;
+      
+    }
+    .img-fluid {
+      width: 100%;
+      height: auto;
+      max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container bg-cover" id="target">
+
+      <h1 class="title">Pointless to Grow Up</h1>
+      <img src="logo.jpg" alt="Pointless to grow up" class="img-fluid"/>
+  </div>
+</body>
+  <script>
+    const target = document.getElementById('target');
+    const className = 'drink'; 
+    const intervals = [20000, 10000, 15000];
+
+    function triggerRandomClass() {
+      // Pick a random interval
+      const delay = intervals[Math.floor(Math.random() * intervals.length)];
+
+      setTimeout(() => {
+        // Add class
+        target.classList.add(className);
+
+        // Remove class after 1 second
+        setTimeout(() => {
+          target.classList.remove(className);
+        }, 2000);
+
+        // Schedule next run
+        triggerRandomClass();
+      }, delay);
+    }
+
+    triggerRandomClass();
+  </script>
+</html>
